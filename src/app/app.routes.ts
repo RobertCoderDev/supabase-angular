@@ -13,7 +13,6 @@ export const routes: Routes = [
   { path: 'sign-in', component: AuthComponent },
   { path: 'file', component: FileUploadComponent, canActivate: [authGuard]},
   { path: 'account', component: AccountComponent},
-  { path: '', redirectTo: 'router', pathMatch: 'full' },
 ];
 
 @NgModule({
