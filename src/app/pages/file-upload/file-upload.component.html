@@ -5,7 +5,7 @@
         <label for="fileInput" class="custom-file-upload" *ngIf="!selectedFile">
           Seleccionar archivo
         </label>
-        <button (click)="uploadFile()" *ngIf="selectedFile">Upload File</button>
+        <button (click)="uploadFile()" *ngIf="selectedFile" [disabled]="isLoading" [style.cursor]="isLoading ? 'not-allowed' : 'pointer'" >Subir archivo</button>
     </div>
     <h3>Archivos en Bucket</h3>
     <div class="files">

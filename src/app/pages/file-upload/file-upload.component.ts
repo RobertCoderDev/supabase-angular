@@ -19,6 +19,7 @@ export class FileUploadComponent {
   files: { name: string, url: string }[] = [];
   session: Session | null = null;
   selectedFile: File | null = null;
+  isLoading: boolean = false;
 
   constructor(private uploadFilesService: UploadFilesService, private readonly authService: AuthService, private router: Router,  private cdr: ChangeDetectorRef) {}
 
@@ -38,6 +39,8 @@ export class FileUploadComponent {
 
   async uploadFile(): Promise<void> {
     if (this.selectedFile) {
+      this.isLoading = true;
+      this.cdr.detectChanges();
       try {
         const response = await this.uploadFilesService.uploadFile(this.selectedFile);
         console.log('File uploaded:', response);
@@ -53,6 +56,7 @@ export class FileUploadComponent {
   }
 
   async loadFiles(): Promise<void> {
+    this.isLoading = false;
     try {
       const { data, error } = await this.uploadFilesService.getFiles();
       if (error) {

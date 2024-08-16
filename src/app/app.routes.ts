@@ -13,10 +13,11 @@ export const routes: Routes = [
   { path: 'sign-in', component: AuthComponent },
   { path: 'file', component: FileUploadComponent, canActivate: [authGuard]},
   { path: 'account', component: AccountComponent},
+  { path: '', redirectTo: 'router', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
