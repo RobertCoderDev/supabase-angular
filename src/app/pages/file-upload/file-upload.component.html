@@ -1,1 +1,17 @@
-<input type="file" (change)="onFileChange($event)" />
+<div class="container">
+    <h2>Subir nuevo archivo</h2>
+    <div class="file-upload">
+        <input type="file" id="fileInput" (change)="onFileSelect($event)" />
+        <label for="fileInput" class="custom-file-upload" *ngIf="!selectedFile">
+          Seleccionar archivo
+        </label>
+        <button (click)="uploadFile()" *ngIf="selectedFile">Upload File</button>
+    </div>
+    <h3>Archivos en Bucket</h3>
+    <div class="files">
+        <div *ngFor="let file of files">
+            <a [href]="file.url" target="_blank"><img [src]="file.url" alt="{{file.name}}" /></a>
+        </div>
+    </div>
+</div>
+

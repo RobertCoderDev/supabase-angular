@@ -1,14 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FileUploadComponent } from './pages/file-upload/file-upload.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { AuthService } from './services/auth.service';
+import { AccountComponent } from './pages/auth/account/account.component';
+import { AuthComponent } from './pages/auth/auth/auth.component';
+import { Session } from '@supabase/supabase-js';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FileUploadComponent],
+  imports: [RouterOutlet, NavbarComponent, AccountComponent, AuthComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'supabase-demo';
+  session: Session | null = null;
+
+  constructor(private readonly authService: AuthService, private router: Router) {}
+
+  ngOnInit() {
+    this.authService.authChanges((event, session) => {
+      if (session) {
+        this.router.navigate(['/file']);
+      }else{
+        this.router.navigate(['/home']);
+      }
+    })
+  }
+  
+
 }
