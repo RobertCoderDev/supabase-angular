@@ -1,16 +1,20 @@
 <div class="container">
-    <h2>Subir nuevo archivo</h2>
+    <h2>Subir nueva imagen </h2>
     <div class="file-upload">
-        <input type="file" id="fileInput" (change)="onFileSelect($event)" />
+        <input type="file" id="fileInput" (change)="onFileSelect($event)" accept="image/*"/>
         <label for="fileInput" class="custom-file-upload" *ngIf="!selectedFile">
-          Seleccionar archivo
+          Seleccionar imagen
         </label>
         <button (click)="uploadFile()" *ngIf="selectedFile" [disabled]="isLoading" [style.cursor]="isLoading ? 'not-allowed' : 'pointer'" >Subir archivo</button>
     </div>
-    <h3>Archivos en Bucket</h3>
+    <h3>Imágenes  en Bucket</h3>
     <div class="files">
-        <div *ngFor="let file of files">
+        <div class="container-main" *ngFor="let file of files">
             <a [href]="file.url" target="_blank"><img [src]="file.url" alt="{{file.name}}" /></a>
+            <div class="description-container">
+                <h4>descripción</h4>
+                <p>{{file.description}}</p>
+            </div>
         </div>
     </div>
 </div>
