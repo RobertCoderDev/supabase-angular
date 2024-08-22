@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Subir nueva imagen </h2>
+    <h3>Subir nueva imagen </h3>
     <div class="file-upload">
         <input type="file" id="fileInput" (change)="onFileSelect($event)" accept="image/*"/>
         <label for="fileInput" class="custom-file-upload" *ngIf="!selectedFile">
@@ -7,15 +7,22 @@
         </label>
         <button (click)="uploadFile()" *ngIf="selectedFile" [disabled]="isLoading" [style.cursor]="isLoading ? 'not-allowed' : 'pointer'" >Subir archivo</button>
     </div>
-    <h3>Imágenes  en Bucket</h3>
+    <h5>Imágenes en Bucket</h5>
     <div class="files">
         <div class="container-main" *ngFor="let file of files">
             <a [href]="file.url" target="_blank"><img [src]="file.url" alt="{{file.name}}" /></a>
             <div class="description-container">
-                <h4>descripción</h4>
+                <h6>Descripción</h6>
                 <p>{{file.description}}</p>
             </div>
         </div>
     </div>
+</div>
+
+<!-- spinner -->
+
+<div *ngIf="isLoading" class="loading-spinner-overlay">
+  <mat-spinner></mat-spinner>
+  <p>Estamos procesando su imagen, esto tardará solo un poco ...</p>
 </div>
 

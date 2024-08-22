@@ -5,12 +5,13 @@ import { AuthService } from '../../services/auth.service';
 import { Session } from '@supabase/supabase-js';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, MatProgressSpinnerModule],
   standalone: true
 })
 export class FileUploadComponent implements OnInit {
